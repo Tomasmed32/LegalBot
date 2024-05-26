@@ -7,11 +7,11 @@ def query(payload):
     response = requests.post(API_URL, json=payload)
     return response.json()
 
-st.title("Consulta a la API de Flowise")
+st.title("Asistente de IA-Régimen de Riesgos del Trabajo (RRT)")
 
-question = st.text_input("Pregunta:", "Hey, how are you?")
+question = st.text_input("Pregunta:", "¡Hola! ¿En que puedo ayudarte?")
 if st.button("Enviar"):
-    with st.spinner("Consultando la API..."):
+    with st.spinner("Consultando al modelo de IA..."):
         output = query({"question": question})
-        st.write("Respuesta de la API:")
+        st.write("Respuesta:")
         st.write(output)
