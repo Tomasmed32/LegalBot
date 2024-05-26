@@ -7,11 +7,19 @@ def query(payload):
     response = requests.post(API_URL, json=payload)
     return response.json()
 
-st.title("Asistente de IA-Régimen de Riesgos del Trabajo (RRT)")
+st.title("Consulta a la API de Flowise")
 
-question = st.text_input("Pregunta:", "¡Hola! ¿En que puedo ayudarte?")
-if st.button("Enviar"):
-    with st.spinner("Consultando al modelo de IA..."):
+# Crear un formulario para la entrada de la pregunta
+with st.form(key='query_form'):
+    question = st.text_input("Pregunta:", "Hey, how are you?")
+    submit_button = st.form_submit_button(label='Enviar')
+
+# Verificar si el formulario ha sido enviado
+if submit_button:
+    with st.spinner("Consultando la API..."):
         output = query({"question": question})
-        st.write("Respuesta:")
-        st.write(output)
+        # Asegurarse de que el campo 'text' esté presente en la respuesta
+        response_text = output.get('text', 'No se encontró el campo "text" en la respuesta.')
+        st.write("Respuesta de la API:")
+        # Mostrar la respuesta en un cuadro
+        st.text_area("Respuesta", value=response_text, height=200)
