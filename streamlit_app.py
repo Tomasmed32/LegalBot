@@ -11,7 +11,7 @@ st.title("Asistente de IA-Régimen de Riesgos del Trabajo (RRT)")
 
 # Crear un formulario para la entrada de la pregunta
 with st.form(key='query_form'):
-    question = st.text_input("Pregunta:", "¡Hola! ¿En que puedo ayudarte?")
+    question = st.text_input("Pregunta:", "", placeholder="¡Hola! ¿En que puedo ayudarte?")
     submit_button = st.form_submit_button(label='Enviar')
 
 # Verificar si el formulario ha sido enviado
